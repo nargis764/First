@@ -1,0 +1,56 @@
+app.js file
+
+const express = require("express")
+const bodyParser = require("body-parser")
+
+const app = express();
+
+//ejs setup
+app.set('view engine', 'ejs');
+
+app.get("/",function(req,res){
+  var today = new Date();
+  var day = "";
+  
+switch (today.getDay()) {
+  case 0:
+    day = "Sunday";
+    break;
+  case 1:
+    day = "Monday";
+    break;
+  case 2:
+     day = "Tuesday";
+    break;
+  case 3:
+    day = "Wednesday";
+    break;
+  case 4:
+    day = "Thursday";
+    break;
+  case 5:
+    day = "Friday";
+    break;
+  case 6:
+    day = "Saturday";
+}
+      res.render("list" , {kindOfDay: day});
+})
+
+app.listen(3000, function(){
+  console.log("server is running at port 3000")
+})
+
+
+list.ejs
+
+.<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>To do List</title>
+  </head>
+  <body>
+ <h1>Today is <%= kindOfDay %></h1>
+  </body>
+</html>
